@@ -1,12 +1,14 @@
 <script>
-import MainHeader from "./components/MainHeader"
+import AppHeader from "./components/AppHeader"
 
 const navLinks = [
   {
-    label: "Home"
+    label: "Home",
+    route: "/"
   },
   {
-    label: "CV"
+    label: "CV",
+    route: "/cv"
   }
 ]
 
@@ -18,17 +20,24 @@ export default {
     }
   },
   components: {
-    "main-header": MainHeader
+    "app-header": AppHeader
   }
 }
 </script>
 
 <template>
   <div id="app">
-    <main-header :navLinks="navLinks" />
-    Welcome to Joseph Kim's website!!! Please hold as we undergo construction <span><img alt="ðŸ™‚" class="_1ift _2560 img" src="https://static.xx.fbcdn.net/images/emoji.php/v9/z4c/1/16/1f642.png" /></span>
-    <div v-for="_ in Array(100)">
-      Lorem Ipsum
+    <app-header :navLinks="navLinks" />
+
+    <div class="ui container">
+      <transition
+        name="fixed-header-transition"
+        enter-active-class="animated fadeInRight"
+        leave-active-class="animated fadeOutLeft"
+        mode="out-in"
+      >
+        <router-view />
+      </transition>
     </div>
   </div>
 </template>
@@ -37,5 +46,19 @@ export default {
 #app {
   font-family: 'Assistant', Helvetica, Arial, sans-serif;
   font-weight: 200;
+}
+
+.fadeInRight {
+  -webkit-animation: fadeInRight .5s;
+  -moz-animation:    fadeInRight .5s;
+  -o-animation:      fadeInRight .5s;
+  animation:         fadeInRight .5s;
+}
+
+.fadeOutLeft {
+  -webkit-animation: fadeOutLeft .5s;
+  -moz-animation:    fadeOutLeft .5s;
+  -o-animation:      fadeOutLeft .5s;
+  animation:         fadeOutLeft .5s;
 }
 </style>
