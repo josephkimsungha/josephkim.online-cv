@@ -1,94 +1,16 @@
 <script>
-const particle = function(size, canvasDimensions) {
+const particle = function(size, canvas) {
   this.radius = Math.random() * (size * .25) + (size * .75)
   this.vr = Math.random() * size / 700 // NOTE need to change this number
   this.sizeIncreasing = true
 
-  this.x = Math.random() * canvasDimensions.w
-  this.y = Math.random() * canvasDimensions.h
+  this.x = Math.random() * canvas.width
+  this.y = Math.random() * canvas.height
 
   // NOTE skipping position checks - canvas and other particles
 
-  this.vx = Math.random()-0.5
-  this.vy = Math.random()-0.5
-}
-
-const animate = function(cardArray, maxSize, speed, ctx, canvasDimensions, eventValues) {
-  // Updating particles
-  for (let i = 0; i < cardArray.length; i++) {
-    const card = cardArray[i]
-
-    card.x += card.vx * speed
-    card.x += card.vy * speed
-
-    if (card.sizeIncreasing) {
-      if (card.radius >= maxSize) {
-        card.sizeIncreasing = false
-      }
-      card.radius += card.vr
-    } else {
-      if (card.radius <= maxSize * .75) {
-        card.sizeIncreasing = true
-      }
-      card.radius -= card.vr
-      if (card.radius < 0) {
-        card.radius = 0
-      }
-    }
-
-    // TODO implement ways to keep the cards on the page
-
-    const eventDistance = maxSize * 5 // NOTE this number is bound to need changing
-    const dxMouse = card.x - eventValues.mouseX
-    const dyMouse = card.y - eventValues.mouseY
-    const mouseDistance = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse)
-    const ratio = 1 - mouseDistance / eventDistance
-
-    card.colour = null
-    if (mouseDistance <= eventDistance) {
-      card.eventRadius = card.radius + (maxSize * ratio) // NOTE might want to change the maths
-      if (mouseDistance <= card.eventRadius) {
-        card.colour = "rgba(200, 200, 200, .7)"
-      }
-    }
-
-    if (eventValues.status == "mouseleave") {
-      card.eventRadius = null
-    }
-
-    // TODO implement interactions between particles
-  }
-
-
-  ctx.clearRect(0, 0, canvasDimensions.w, canvasDimensions.h)
-
-  // Drawing particles
-  for (let i = 0; i < cardArray.length; i++) {
-    const card = cardArray[i]
-
-    let radius = card.eventRadius ? card.eventRadius : card.radius
-
-    ctx.fillStyle = card.colour ? card.colour : "rgba(0, 0, 0, 1)"
-    ctx.beginPath()
-    ctx.arc(card.x, card.y, radius, 0, Math.PI * 2, false)
-    ctx.closePath()
-    ctx.fill()
-  }
-
-  requestAnimationFrame(function() {animate(cardArray, maxSize, speed, ctx, canvasDimensions, eventValues)})
-}
-
-const setEventListeners = function(canvas, eventValues) {
-  canvas.addEventListener("mousemove", function(e) {
-    eventValues.mouseX = e.offsetX || e.clientX
-    eventValues.mouseY = e.offsetY || e.clientY
-    eventValues.status = "mousemove"
-  })
-  canvas.addEventListener("mouseleave", function(e) {
-    eventValues.mouseX = null;
-    eventValues.mouseY = null;
-    eventValues.status = "mouseleave"
-  })
+  this.vx = Math.random() - 0.5
+  this.vy = Math.random() - 0.5
 }
 
 export default {
@@ -96,36 +18,168 @@ export default {
   props: ["myCards"],
   data: function() {
     return {
+      cardArray: [],
+      eventValues: {},
+      canvas: null,
+      ctx: null,
+
       maxSize: 40,
-      speed: 0.2,
-      eventValues: {}
+      speed: 2,
+      linkDistance: 400,
+      linkMaxOpacity: .7
+    }
+  },
+  methods: {
+    resetCardArray() {
+      // NOTE cardArray will one day need to be populated by cards
+      this.cardArray.length = 0
+      for (let i = 0; i < this.myCards.length; i++) {
+        this.cardArray.push(new particle(this.maxSize, canvas))
+      }
+    },
+
+    setEventListeners() {
+      const { canvas, eventValues, resetCardArray } = this
+      window.addEventListener("resize", function(e) {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight - document.getElementById("app-header").offsetHeight
+        resetCardArray()
+      })
+      canvas.addEventListener("mousemove", function(e) {
+        eventValues.mouseX = e.offsetX || e.clientX
+        eventValues.mouseY = e.offsetY || e.clientY
+        eventValues.status = "mousemove"
+      })
+      canvas.addEventListener("mouseleave", function(e) {
+        eventValues.mouseX = null;
+        eventValues.mouseY = null;
+        eventValues.status = "mouseleave"
+      })
+    },
+
+    linkParticles(first, second) {
+      const { linkDistance, linkMaxOpacity, ctx } = this
+
+      const dx = first.x - second.x
+      const dy = first.y - second.y
+      const dist = Math.sqrt(dx * dx + dy * dy)
+
+      if (dist < linkDistance) {
+        const opacity = linkMaxOpacity * (1 - dist / linkDistance)
+        ctx.strokeStyle = `rgba(0, 0, 0, ${opacity})`
+        ctx.lineWidth = 1 // NOTE might need changing
+
+        ctx.beginPath()
+        ctx.moveTo(first.x, first.y)
+        ctx.lineTo(second.x, second.y)
+        ctx.stroke()
+        ctx.closePath()
+      }
+    },
+
+    animate() {
+      const { cardArray, canvas, ctx, eventValues, ...options } = this
+      // Updating particles
+      for (let i = 0; i < cardArray.length; i++) {
+        const card = cardArray[i]
+
+        // Particle movement
+        card.x += card.vx * options.speed
+        card.y += card.vy * options.speed
+
+        // Particle size
+        if (card.sizeIncreasing) {
+          if (card.radius >= options.maxSize) {
+            card.sizeIncreasing = false
+          }
+          card.radius += card.vr
+        } else {
+          if (card.radius <= options.maxSize * .75) {
+            card.sizeIncreasing = true
+          }
+          card.radius -= card.vr
+          if (card.radius < 0) {
+            card.radius = 0
+          }
+        }
+
+        // Particle-mouse interaction
+        const eventDistance = options.maxSize * 5 // NOTE this number is bound to need changing
+        const dxMouse = card.x - eventValues.mouseX
+        const dyMouse = card.y - eventValues.mouseY
+        const mouseDistance = card.x && card.y ? Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse) : null
+        const ratio = 1 - mouseDistance / eventDistance
+
+        card.colour = null
+        if (mouseDistance && mouseDistance <= eventDistance) {
+          card.eventRadius = card.radius + (options.maxSize * ratio) // NOTE might want to change the maths
+          if (mouseDistance <= card.eventRadius) {
+            card.colour = "rgba(200, 200, 200, .7)"
+          }
+        }
+
+        if (eventValues.status == "mouseleave" || mouseDistance > eventDistance) {
+          card.eventRadius = null
+        }
+
+        // Particle-canvas interaction
+        const radius = card.eventRadius ? card.eventRadius : card.radius
+        if (card.x - radius < 0) {
+          card.vx = Math.abs(card.vx)
+        } else if (card.x + radius > canvas.width) {
+          card.vx = -Math.abs(card.vx)
+        }
+        if (card.y - radius < 0) {
+          card.vy = Math.abs(card.vy)
+        } else if (card.y + radius > canvas.height) {
+          card.vy = -Math.abs(card.vy)
+        }
+      }
+
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      // Drawing particles
+      for (let i = 0; i < cardArray.length; i++) {
+        const card = cardArray[i]
+
+        const radius = card.eventRadius ? card.eventRadius : card.radius
+
+        ctx.fillStyle = card.colour ? card.colour : "rgba(0, 0, 0, 1)"
+        ctx.beginPath()
+        ctx.arc(card.x, card.y, radius, 0, Math.PI * 2, false)
+        ctx.closePath()
+        ctx.fill()
+
+        // Particle-particle interaction
+        for (let j = i + 1; j < cardArray.length; j++) {
+          const card2 = cardArray[j]
+
+          this.linkParticles(card, card2)
+        }
+      }
+
+      requestAnimationFrame(this.animate)
     }
   },
   mounted: function() {
-    const myCards = this.myCards
-    const maxSize = this.maxSize
-    const speed = this.speed
-    const eventValues = this.eventValues
-    const canvas = document.getElementById('canvas')
-    const ctx = canvas.getContext('2d')
-    const canvasWidth = canvas.width
-    const canvasHeight = canvas.height
+    const { myCards, cardArray, eventValues, ...options } = this
+    this.canvas = canvas
+    this.ctx = canvas.getContext('2d')
+    this.canvas.width = window.innerWidth
+    this.canvas.height = window.innerHeight - (document.getElementById("app-header").offsetHeight || document.getElementById("app-header").clientHeight)
 
-    setEventListeners(canvas, eventValues)
+    this.setEventListeners()
 
-    // NOTE cardArray will one day need to be populated by cards
-    const cardArray = []
-    for (let i = 0; i < myCards.length; i++) {
-      cardArray.push(new particle(maxSize, { w: canvasWidth, h: canvasHeight }))
-    }
+    this.resetCardArray()
 
-    animate(cardArray, maxSize, speed, ctx, { w: canvasWidth, h: canvasHeight }, eventValues)
+    this.animate()
   }
 }
 </script>
 
 <template>
-  <canvas id="canvas" width="1000" height="400" />
+  <canvas id="canvas" />
 </template>
 
 <style>

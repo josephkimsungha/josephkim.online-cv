@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from "./Home"
 
-const CV = { template: '<div>This is the cv page</div>' }
+const CV = { template: '<div class="ui container">This is the cv page</div>' }
 
 Vue.use(VueRouter)
 

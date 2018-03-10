@@ -28,17 +28,14 @@ export default {
 <template>
   <div id="app">
     <app-header :navLinks="navLinks" />
-
-    <div class="ui container">
-      <transition
-        name="fixed-header-transition"
-        enter-active-class="animated fadeInRight"
-        leave-active-class="animated fadeOutLeft"
-        mode="out-in"
-      >
-        <router-view />
-      </transition>
-    </div>
+    <transition
+      name="fixed-header-transition"
+      enter-active-class="animated fadeInRight"
+      leave-active-class="animated fadeOutLeft"
+      mode="out-in"
+    >
+      <router-view />
+    </transition>
   </div>
 </template>
 
