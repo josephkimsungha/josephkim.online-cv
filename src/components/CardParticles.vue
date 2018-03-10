@@ -23,26 +23,34 @@ export default {
       canvas: null,
       ctx: null,
 
-      maxSize: 40,
+      maxSize: null, // responsively set through resetSizes()
       speed: 2,
-      linkDistance: 400,
+      linkDistance: null, // responsively set through resetSizes()
       linkMaxOpacity: .7
     }
   },
   methods: {
+    resetSizes() {
+      this.maxSize = Math.min(this.canvas.width, this.canvas.height) / 20
+      this.linkDistance = Math.min(this.canvas.width, this.canvas.height) / 1.5
+    },
+
     resetCardArray() {
       // NOTE cardArray will one day need to be populated by cards
       this.cardArray.length = 0
       for (let i = 0; i < this.myCards.length; i++) {
-        this.cardArray.push(new particle(this.maxSize, canvas))
+        this.cardArray.push(new particle(this.maxSize, this.canvas))
       }
     },
 
     setEventListeners() {
-      const { canvas, eventValues, resetCardArray } = this
+      const { canvas, eventValues, resetSizes, resetCardArray } = this
+
       window.addEventListener("resize", function(e) {
         canvas.width = window.innerWidth
         canvas.height = window.innerHeight - document.getElementById("app-header").offsetHeight
+
+        resetSizes()
         resetCardArray()
       })
       canvas.addEventListener("mousemove", function(e) {
@@ -163,7 +171,6 @@ export default {
     }
   },
   mounted: function() {
-    const { myCards, cardArray, eventValues, ...options } = this
     this.canvas = canvas
     this.ctx = canvas.getContext('2d')
     this.canvas.width = window.innerWidth
@@ -171,6 +178,7 @@ export default {
 
     this.setEventListeners()
 
+    this.resetSizes()
     this.resetCardArray()
 
     this.animate()
