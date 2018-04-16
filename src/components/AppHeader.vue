@@ -59,7 +59,7 @@ export default {
 #app-header .header {
   padding-top: 0;
   padding-bottom: 0;
-  margin-bottom: 0;
+  margin-bottom: 20px;
 }
 
 #app-header .menu {

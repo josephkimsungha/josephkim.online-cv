@@ -21,8 +21,28 @@ const navLinks = [
     route: "/"
   },
   {
-    label: "CV",
-    route: "/cv"
+    label: "Employment History",
+    route: "/pastjobs"
+  },
+  {
+    label: "Volunteering",
+    route: "/volunteering"
+  },
+  {
+    label: "Education",
+    route: "/education"
+  },
+  {
+    label: "Skills",
+    route: "/skills"
+  },
+  {
+    label: "Achievements",
+    route: "/achievements"
+  },
+  {
+    label: "Referees",
+    route: "/referees"
   }
 ]
 

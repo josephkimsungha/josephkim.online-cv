@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Achievements from "./Achievements"
+import Education from "./Education"
 import Home from "./Home"
+import PastJobs from "./PastJobs"
+import Referees from "./Referees"
+import Skills from "./Skills"
+import Volunteering from "./Volunteering"
 
 const CV = { template: '<div class="ui container">This is the cv page</div>' }
 
@@ -12,6 +18,11 @@ export default new VueRouter({
   linkExactActiveClass: "active",
   routes: [
     { path: '/', name: "Home", component: Home },
-    { path: '/cv', name:"CV", component: CV }
+    { path: '/pastjobs', name:"PastJobs", component: PastJobs },
+    { path: '/volunteering', name:"Volunteering", component: Volunteering },
+    { path: '/education', name:"Education", component: Education },
+    { path: '/skills', name:"Skills", component: Skills },
+    { path: '/achievements', name:"Achievements", component: Achievements },
+    { path: '/referees', name:"Referees", component: Referees }
   ]
 })
