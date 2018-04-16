@@ -59,8 +59,10 @@ export default {
 #app-header .header {
   padding-top: 0;
   padding-bottom: 0;
+  margin-bottom: 0;
 }
+
 #app-header .menu {
-  font-family: 'Assistant', Helvetica, Arial, sans-serif;
+  font-family: "Assistant", Helvetica, Arial, sans-serif;
 }
 </style>

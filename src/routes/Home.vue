@@ -1,24 +1,20 @@
 <template>
-  <div id="home">
-    <card-particles :myCards="myCards" />
+  <div class="ui container" id="home">
+    <div class="ui very padded piled center aligned segment">
+      <h1 class="ui icon header">
+        <i class="hand peace icon"></i>
+        <div class="content">
+          Welcome
+          <div class="sub header">Please enjoy your stay.</div>
+        </div>
+      </h1>
+    </div>
   </div>
 </template>
 
 <script>
-import CardParticles from "../components/CardParticles"
-
-const myCards = new Array(20)
-
 export default {
-  name: 'Home',
-  data: function() {
-    return {
-      myCards
-    }
-  },
-  components: {
-    "card-particles": CardParticles
-  }
+  name: 'Home'
 }
 </script>
 

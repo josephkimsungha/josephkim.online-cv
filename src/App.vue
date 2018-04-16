@@ -41,7 +41,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Assistant', Helvetica, Arial, sans-serif;
+  font-family: "Assistant", Helvetica, Arial, sans-serif;
   font-weight: 200;
 }
 
