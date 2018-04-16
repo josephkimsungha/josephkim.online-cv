@@ -1,3 +1,7 @@
+<template>
+  <canvas id="canvas" />
+</template>
+
 <script>
 const particle = function(size, canvas) {
   this.radius = Math.random() * (size * .25) + (size * .75)
@@ -185,10 +189,6 @@ export default {
   }
 }
 </script>
-
-<template>
-  <canvas id="canvas" />
-</template>
 
 <style>
 #canvas {

@@ -1,3 +1,17 @@
+<template>
+  <div id="app">
+    <app-header :navLinks="navLinks" />
+    <transition
+      name="fixed-header-transition"
+      enter-active-class="animated fadeInRight"
+      leave-active-class="animated fadeOutLeft"
+      mode="out-in"
+    >
+      <router-view />
+    </transition>
+  </div>
+</template>
+
 <script>
 import AppHeader from "./components/AppHeader"
 
@@ -24,20 +38,6 @@ export default {
   }
 }
 </script>
-
-<template>
-  <div id="app">
-    <app-header :navLinks="navLinks" />
-    <transition
-      name="fixed-header-transition"
-      enter-active-class="animated fadeInRight"
-      leave-active-class="animated fadeOutLeft"
-      mode="out-in"
-    >
-      <router-view />
-    </transition>
-  </div>
-</template>
 
 <style>
 #app {

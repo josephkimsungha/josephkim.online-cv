@@ -1,20 +1,3 @@
-<script>
-export default {
-  name: 'AppHeader',
-  props: ["navLinks"],
-  data: function() {
-    return {
-      fixed: false
-    }
-  },
-  methods: {
-    fixMenu(isVisible, entry) {
-      this.fixed = !isVisible
-    }
-  }
-}
-</script>
-
 <template>
   <div id="app-header">
     <div class="ui basic inverted segment header">
@@ -54,6 +37,23 @@ export default {
     </transition>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'AppHeader',
+  props: ["navLinks"],
+  data: function() {
+    return {
+      fixed: false
+    }
+  },
+  methods: {
+    fixMenu(isVisible, entry) {
+      this.fixed = !isVisible
+    }
+  }
+}
+</script>
 
 <style>
 #app-header .header {

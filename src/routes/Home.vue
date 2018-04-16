@@ -1,3 +1,9 @@
+<template>
+  <div id="home">
+    <card-particles :myCards="myCards" />
+  </div>
+</template>
+
 <script>
 import CardParticles from "../components/CardParticles"
 
@@ -15,12 +21,6 @@ export default {
   }
 }
 </script>
-
-<template>
-  <div id="home">
-    <card-particles :myCards="myCards" />
-  </div>
-</template>
 
 <style>
 #home {
