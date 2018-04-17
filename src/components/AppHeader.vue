@@ -1,5 +1,5 @@
 <template>
-  <div id="app-header">
+  <div class="computer only" id="app-header">
     <div class="ui basic inverted segment header">
       <div class="ui container">
         <div class="ui inverted secondary pointing huge menu" v-observe-visibility="fixMenu">
@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  name: 'AppHeader',
+  name: "AppHeader",
   props: ["navLinks"],
   data: function() {
     return {
