@@ -8,9 +8,11 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "node build/build.js",
-    "deploy": "npm run build && ftp -s:.ftpdeploy"
+    "deploy": "npm run build && ftp -s:.ftpdeploy",
+    "deployFunctions": "firebase deploy --only functions"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "npm": "^5.8.0",
     "vue": "^2.5.2",
     "vue-observe-visibility": "^0.3.1",

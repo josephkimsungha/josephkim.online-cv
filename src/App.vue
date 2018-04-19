@@ -52,11 +52,15 @@ const navLinks = [
   {
     label: "Referees",
     route: "/referees"
+  },
+  {
+    label: "Get in Touch",
+    route: "/contact"
   }
 ]
 
 export default {
-  name: 'App',
+  name: "App",
   data: function() {
     return {
       navLinks

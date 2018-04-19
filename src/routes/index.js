@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Achievements from "./Achievements"
+import Contact from "./Contact"
 import Education from "./Education"
 import Home from "./Home"
 import PastJobs from "./PastJobs"
@@ -23,6 +24,7 @@ export default new VueRouter({
     { path: '/education', name:"Education", component: Education },
     { path: '/skills', name:"Skills", component: Skills },
     { path: '/achievements', name:"Achievements", component: Achievements },
-    { path: '/referees', name:"Referees", component: Referees }
+    { path: '/referees', name:"Referees", component: Referees },
+    { path: '/contact', name:"Contact", component: Contact }
   ]
 })
