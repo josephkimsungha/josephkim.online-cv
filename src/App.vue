@@ -34,6 +34,10 @@ const navLinks = [
     route: "/pastjobs"
   },
   {
+    label: "Personal Projects",
+    route: "/projects"
+  },
+  {
     label: "Volunteering",
     route: "/volunteering"
   },

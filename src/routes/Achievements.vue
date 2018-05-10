@@ -2,6 +2,7 @@
   <div class="ui container" id="achievements">
     <div class="ui very padded piled segment">
       <div class="ui bulleted list">
+        <router-link to="/projects" class="item">3<sup>rd</sup> place at Facebook Melbourne Hack 2018</router-link>
         <div class="item">Placed within top 10% for the IEEEXtreme 10.0</div>
         <div class="item">Placed within top 11% for the IEEEXtreme 11.0</div>
         <div class="item">Distinction in Rio Tinto Science Competition</div>

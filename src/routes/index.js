@@ -5,6 +5,7 @@ import Contact from "./Contact"
 import Education from "./Education"
 import Home from "./Home"
 import PastJobs from "./PastJobs"
+import Projects from "./Projects"
 import Referees from "./Referees"
 import Skills from "./Skills"
 import Volunteering from "./Volunteering"
@@ -20,6 +21,7 @@ export default new VueRouter({
   routes: [
     { path: '/', name: "Home", component: Home },
     { path: '/pastjobs', name:"PastJobs", component: PastJobs },
+    { path: '/projects', name:"Projects", component: Projects },
     { path: '/volunteering', name:"Volunteering", component: Volunteering },
     { path: '/education', name:"Education", component: Education },
     { path: '/skills', name:"Skills", component: Skills },
