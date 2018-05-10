@@ -30,6 +30,11 @@
                   target="_blank"
                 >
                   here
+                </a> and the GitHub page can be found <a
+                  href="https://github.com/sudhirmandarapu/student-study-space"
+                  target="_blank"
+                >
+                  here
                 </a>.
               </p>
             </div>
@@ -73,10 +78,21 @@
               Vue, Firebase (Functions), Semantic UI
             </div>
             <div class="description">
-              This website is intended to simultaneously provide relevant
-              information about my experience and display my ability to develop
-              front-end applications. I created this within a week of looking
-              into Vue for the first time.
+              <p>
+                This website is intended to simultaneously provide relevant
+                information about my experience and display my ability to
+                develop front-end applications. I created this within a week of
+                looking into Vue for the first time.
+              </p>
+              <p>
+                The GitHub page for this website can be
+                found <a
+                  href="https://github.com/josephkimsungha/josephkim.online-cv"
+                  target="_blank"
+                >
+                  here
+                </a>.
+              </p>
             </div>
           </div>
         </div>
