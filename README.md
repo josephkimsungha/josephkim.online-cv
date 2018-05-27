@@ -8,9 +8,9 @@ If you have any questions, feel free to contact me at me@josephkim.online
 
 ### .ftpdeploy
 
-Location: root directory of project (outside of src)
+**Location** root directory of project (outside of src)
 
-Format:
+**Format**
 open ftp.XXX
 USERNAME
 PASSWORD
