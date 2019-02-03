@@ -5,6 +5,64 @@
         <div class="item">
           <div class="content">
             <div class="header">
+              Software Developer at Jarvis Home Services
+            </div>
+            <div class="meta">
+              June 2018 - Present
+            </div>
+            <div class="description">
+              Working as a developer for a start-up company taught me how to learn quickly on the job and to focus on
+              more than just my own projects but to maintain consideration of the benefit of the company as a whole. I
+              began working on a full-time basis since November 2018.
+            </div>
+            <br>
+            <div class="header">
+              Skills used/accrued
+            </div>
+            <div class="ui equal width grid">
+              <div class="column">
+                <div class="ui sub header">
+                  Front End
+                </div>
+                <div class="ui bulleted list">
+                  <div class="item">React/Redux</div>
+                  <div class="item">Styling in Semantic UI</div>
+                  <div class="item">GraphQL</div>
+                  <div class="item">Bindings for various backend technologies (Feathers JS, Prisma)</div>
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="ui sub header">
+                  Back End
+                </div>
+                <div class="ui bulleted list">
+                  <div class="item">Express</div>
+                  <div class="item">Feathers JS</div>
+                  <div class="item">Prisma</div>
+                  <div class="item">Zendesk/Google Sheet APIs</div>
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="ui sub header">
+                  Other
+                </div>
+                <div class="ui bulleted list">
+                  <div class="item">Docker</div>
+                  <div class="item">Gitlab CI/CD</div>
+                  <div class="item">Rancher Deployment</div>
+                  <div class="item">Salesforce</div>
+                  <div class="item">Zapier App</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="content">
+            <div class="header">
               Software Developer at Telstra
             </div>
             <div class="meta">

@@ -16,6 +16,7 @@
               <div class="item">Currently in penultimate year of study, expecting to finish Nov 2018</div>
               <div class="item">Current 4.0 Grade Point Average: 3.636</div>
               <div class="item">Current Weighted Average Mark: 81.944</div>
+              <div class="item">Academic transcript is available upon request</div>
             </div>
           </div>
         </div>

@@ -11,8 +11,8 @@
               January 2018 - Present
             </div>
             <div class="description">
-              Responsible for creating designs for concert, as well as the
-              orchestra's website.
+              Responsible for creating designs for concert material such as promotional posters and programmes,
+              as well as the developing/maintaining the orchestra's website.
             </div>
           </div>
         </div>
