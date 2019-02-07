@@ -4,7 +4,9 @@ const cors = require("cors")({origin: true})
 const auth = require("./credentials.json")
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth
 });
 
