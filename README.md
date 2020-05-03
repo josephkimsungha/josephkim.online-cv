@@ -1,24 +1,5 @@
-# josephkim.online-cv-new
+# cv
 
-## Project setup
-```
-npm install
-```
+> The main website showing my CV to the world
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+If you have any questions, feel free to contact me at me@josephkim.online
